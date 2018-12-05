@@ -1,10 +1,10 @@
 package main;
 
-import main.WeeklyWorkout.Level;
-
 import java.time.DayOfWeek;
 
 //import javafx.beans.value.WritableObjectValue;
+import main.WeeklyWorkout.Level;
+import main.WorkoutRoutine.Type;
 
 public class Workout {
 
@@ -35,10 +35,10 @@ public class Workout {
 
 	private WorkoutRoutine[] generateBeginnerRoutines(Level level) {
 		WorkoutRoutine[] routines = new WorkoutRoutine[2];
-		WorkoutRoutine tabata = new WorkoutRoutine(WorkoutRoutine.Type.TABATA, level);
+		WorkoutRoutine tabata = new WorkoutRoutine(Type.TABATA, level);
 		tabata.generateTabata();
 
-		WorkoutRoutine pyramid = new WorkoutRoutine(WorkoutRoutine.Type.PYRAMID, level);
+		WorkoutRoutine pyramid = new WorkoutRoutine(Type.PYRAMID, level);
 		pyramid.generatePyramid();
 
 		routines[0] = pyramid;
@@ -48,13 +48,13 @@ public class Workout {
 
 	private WorkoutRoutine[] generateIntermediateRoutines(Level level) {
 		WorkoutRoutine[] routines = new WorkoutRoutine[3];
-		WorkoutRoutine tabata = new WorkoutRoutine(WorkoutRoutine.Type.TABATA, level);
+		WorkoutRoutine tabata = new WorkoutRoutine(Type.TABATA, level);
 		tabata.generateTabata();
 
-		WorkoutRoutine pyramid = new WorkoutRoutine(WorkoutRoutine.Type.PYRAMID, level);
+		WorkoutRoutine pyramid = new WorkoutRoutine(Type.PYRAMID, level);
 		pyramid.generatePyramid();
 
-		WorkoutRoutine killer = new WorkoutRoutine(WorkoutRoutine.Type.KILLER, level);
+		WorkoutRoutine killer = new WorkoutRoutine(Type.KILLER, level);
 		killer.generateKiller(this.position);
 
 		routines[0] = killer;
@@ -65,13 +65,13 @@ public class Workout {
 
 	private WorkoutRoutine[] generateAdvancedRoutines(Level level) {
 		WorkoutRoutine[] routines = new WorkoutRoutine[3];
-		WorkoutRoutine tabata = new WorkoutRoutine(WorkoutRoutine.Type.TABATA, level);
+		WorkoutRoutine tabata = new WorkoutRoutine(Type.TABATA, level);
 		tabata.generateTabata();
 
-		WorkoutRoutine pyramid = new WorkoutRoutine(WorkoutRoutine.Type.PYRAMID, level);
+		WorkoutRoutine pyramid = new WorkoutRoutine(Type.PYRAMID, level);
 		pyramid.generatePyramid();
 
-		WorkoutRoutine killer = new WorkoutRoutine(WorkoutRoutine.Type.KILLER, level);
+		WorkoutRoutine killer = new WorkoutRoutine(Type.KILLER, level);
 		killer.generateKiller(this.position);
 
 		routines[0] = killer;
@@ -82,7 +82,7 @@ public class Workout {
 
 	public String printEntireWorkout() {
 		String workout = "";
-		workout = "Start with: " + this.strength.getName() + " 4 repetition, max weight FOR 5 SETS\n ";
+		workout = "Start with: " + this.strength.getName() + " 4 repetition, max weight FOR 5 SETS at -> " + this.strength.getLimit(Type.STRENGTH)+"\n";
 		workout += "~!REST FOR 2 MIN!~\n\n";
 		for (WorkoutRoutine wr : routines) {
 			workout += wr.returnEntireRoutine();

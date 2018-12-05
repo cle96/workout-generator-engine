@@ -1,5 +1,7 @@
 package main;
-	
+
+import main.WorkoutRoutine.Type;
+
 public class Exercise {
 	public enum Classification {
 		STRENGTH, INTERVAL, ISOLATE
@@ -15,6 +17,7 @@ public class Exercise {
 	private Muscle mainTarget;
 	private Muscle secondaryTarget;
 	private Muscle[] otherTargets;
+	private MaxForType max;
 
 	public Exercise(boolean fullBody, String name, Classification classification, Muscle mainTarget,
 			Muscle secondaryTarget, Muscle[] otherTargets) {
@@ -72,6 +75,23 @@ public class Exercise {
 
 	public void setOtherTargets(Muscle[] otherTargets) {
 		this.otherTargets = otherTargets;
+	}
+	
+	public int getLimit(Type type){
+		int limit = 0;
+		if(max != null){
+			limit = max.limits.get(type);
+		}
+		return limit;
+	}
+
+	public MaxForType getMax() {
+		return max;
+	}
+
+	public Exercise setMax(MaxForType max) {
+		this.max = max;
+		return this;
 	}
 
 	public String toString() {
